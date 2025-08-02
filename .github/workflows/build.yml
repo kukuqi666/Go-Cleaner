@@ -1,0 +1,98 @@
+name: Build and Release Go-Cleaner
+
+on:
+  push:
+    tags:
+      - 'v*.*.*'   # 触发条件：推送 tag，如 v1.0.0
+  workflow_dispatch:
+
+jobs:
+  build-windows:
+    name: Build Windows EXE
+    runs-on: windows-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Get dependencies
+        run: |
+          go version
+          go mod tidy
+
+      - name: Build Windows EXE
+        run: |
+          go build -o Go-Cleaner.exe main.go
+
+      - name: Zip Windows EXE
+        run: Compress-Archive -Path Go-Cleaner.exe -DestinationPath Go-Cleaner-Windows.zip
+
+      - name: Upload Windows artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Go-Cleaner-Windows-Zip
+          path: Go-Cleaner-Windows.zip
+
+  build-linux:
+    name: Build Linux Binary
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.21'
+
+      - name: Get dependencies
+        run: |
+          go version
+          go mod tidy
+
+      - name: Build Linux Binary
+        run: |
+          go build -o Go-Cleaner main.go
+
+      - name: Make executable
+        run: chmod +x Go-Cleaner
+
+      - name: Tar Linux Binary
+        run: tar -czvf Go-Cleaner-Linux.tar.gz Go-Cleaner
+
+      - name: Upload Linux artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Go-Cleaner-Linux-Tar
+          path: Go-Cleaner-Linux.tar.gz
+
+  release:
+    name: Create GitHub Release
+    needs: [build-windows, build-linux]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Download Windows artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Go-Cleaner-Windows-Zip
+
+      - name: Download Linux artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: Go-Cleaner-Linux-Tar
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            Go-Cleaner-Windows.zip
+            Go-Cleaner-Linux.tar.gz
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
