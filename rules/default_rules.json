@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Temp Files",
+    "paths": ["C:\\\\Windows\\\\Temp", "/tmp"],
+    "extensions": [".tmp", ".temp"],
+    "min_size_mb": 0,
+    "max_age_days": 0,
+    "description": "Temporary files"
+  },
+  {
+    "name": "Log Files",
+    "paths": ["/var/log", "C:\\\\Logs"],
+    "extensions": [".log"],
+    "min_size_mb": 1,
+    "max_age_days": 30,
+    "description": "Old log files"
+  }
+]
