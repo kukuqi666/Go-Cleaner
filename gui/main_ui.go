@@ -12,6 +12,10 @@ import (
 	"fyne.io/fyne/v2/widget"
 )
 
+
+var scanButton *widget.Button
+var cleanButton *widget.Button
+
 func RunUI(rules []cleaner.Rule) {
 	myApp := app.New()
 	myWindow := myApp.NewWindow("🧹 Go-Cleaner by kukuqi666")
@@ -38,7 +42,7 @@ func RunUI(rules []cleaner.Rule) {
 	var matchedFiles []string
 	var isScanning bool
 
-	scanButton := widget.NewButton("🔍 Scan for Files", func() {
+	scanButton = widget.NewButton("🔍 Scan for Files", func() {
 		if isScanning {
 			return
 		}
@@ -92,7 +96,7 @@ func RunUI(rules []cleaner.Rule) {
 		}()
 	})
 
-	cleanButton := widget.NewButton("🗑️ Clean Files", func() {
+	cleanButton = widget.NewButton("🗑️ Clean Files", func() {
 		if len(matchedFiles) == 0 {
 			dialog.ShowInformation("No Files", "No files to clean. Please scan first.", myWindow)
 			return
