@@ -6,7 +6,7 @@
 *.dylib
 *.test
 *.out
-go-cleaner.exe
+Go-Cleaner.exe
 
 # Go构建目录
 bin/
