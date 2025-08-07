@@ -1,18 +1,82 @@
 [
   {
-    "name": "Temp Files",
-    "paths": ["C:\\\\Windows\\\\Temp", "/tmp"],
-    "extensions": [".tmp", ".temp"],
+    "name": "Windows Temp Files",
+    "paths": ["C:\\Windows\\Temp", "C:\\Users\\%USERNAME%\\AppData\\Local\\Temp"],
+    "extensions": [".tmp", ".temp", ".~tmp"],
     "min_size_mb": 0,
     "max_age_days": 0,
-    "description": "Temporary files"
+    "description": "Windows temporary files"
   },
   {
-    "name": "Log Files",
-    "paths": ["/var/log", "C:\\\\Logs"],
-    "extensions": [".log"],
+    "name": "Browser Cache - Chrome",
+    "paths": ["C:\\Users\\%USERNAME%\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cache"],
+    "extensions": [".dat", ".tmp", ".cache"],
+    "min_size_mb": 0,
+    "max_age_days": 7,
+    "description": "Chrome browser cache files older than 7 days"
+  },
+  {
+    "name": "Browser Cache - Edge",
+    "paths": ["C:\\Users\\%USERNAME%\\AppData\\Local\\Microsoft\\Edge\\User Data\\Default\\Cache"],
+    "extensions": [".dat", ".tmp", ".cache"],
+    "min_size_mb": 0,
+    "max_age_days": 7,
+    "description": "Microsoft Edge browser cache files older than 7 days"
+  },
+  {
+    "name": "System Log Files",
+    "paths": ["C:\\Windows\\Logs", "C:\\Windows\\System32\\LogFiles"],
+    "extensions": [".log", ".etl"],
     "min_size_mb": 1,
     "max_age_days": 30,
-    "description": "Old log files"
+    "description": "System log files older than 30 days and larger than 1MB"
+  },
+  {
+    "name": "Windows Update Cache",
+    "paths": ["C:\\Windows\\SoftwareDistribution\\Download"],
+    "extensions": [".cab", ".msu", ".exe", ".tmp"],
+    "min_size_mb": 5,
+    "max_age_days": 7,
+    "description": "Windows Update cache files older than 7 days and larger than 5MB"
+  },
+  {
+    "name": "Recycle Bin",
+    "paths": ["C:\\$Recycle.Bin"],
+    "extensions": [".*"],
+    "min_size_mb": 0,
+    "max_age_days": 7,
+    "description": "Recycle Bin files older than 7 days"
+  },
+  {
+    "name": "Prefetch Files",
+    "paths": ["C:\\Windows\\Prefetch"],
+    "extensions": [".pf"],
+    "min_size_mb": 0,
+    "max_age_days": 30,
+    "description": "Windows Prefetch files older than 30 days"
+  },
+  {
+    "name": "Thumbnail Cache",
+    "paths": ["C:\\Users\\%USERNAME%\\AppData\\Local\\Microsoft\\Windows\\Explorer"],
+    "extensions": [".db"],
+    "min_size_mb": 1,
+    "max_age_days": 30,
+    "description": "Windows thumbnail cache files older than 30 days"
+  },
+  {
+    "name": "IIS Logs",
+    "paths": ["C:\\inetpub\\logs\\LogFiles"],
+    "extensions": [".log"],
+    "min_size_mb": 10,
+    "max_age_days": 90,
+    "description": "IIS log files older than 90 days and larger than 10MB"
+  },
+  {
+    "name": "Windows Error Reports",
+    "paths": ["C:\\ProgramData\\Microsoft\\Windows\\WER"],
+    "extensions": [".dmp", ".tmp", ".hdmp"],
+    "min_size_mb": 1,
+    "max_age_days": 30,
+    "description": "Windows Error Reports older than 30 days"
   }
 ]

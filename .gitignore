@@ -1,0 +1,94 @@
+# Go相关文件
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go-cleaner.exe
+
+# Go构建目录
+bin/
+dist/
+build/
+
+# IDE和编辑器文件
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# 操作系统生成的文件
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+*.log
+*.bak
+*.backup
+
+# 测试文件
+test_*.go
+debug_*.go
+*.test
+
+# 构建脚本生成的文件
+*.bat
+*.sh
+
+# 依赖目录
+vendor/
+
+# 环境变量文件
+.env
+.env.local
+
+# 日志文件
+*.log
+logs/
+
+# 缓存文件
+cache/
+.cache/
+
+# 临时目录
+temp/
+tmp/
+
+# 备份文件
+backup/
+*.backup
+
+# 压缩文件
+*.zip
+*.tar.gz
+*.rar
+
+# 文档生成
+docs/
+*.md.bak
+
+# 测试覆盖率报告
+coverage.out
+coverage.html
+
+# 性能分析文件
+*.prof
+*.pprof
+
+# 调试文件
+debug/
+*.debug
+
+# 用户特定文件
+user_config.json
+local_settings.json
